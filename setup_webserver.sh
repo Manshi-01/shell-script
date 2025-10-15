@@ -37,14 +37,13 @@ access_log /var/log/nginx/my_site.access.log;
 error_log /var/log/nginx/my_site.error.log;
 
 location / {
-try_files $uri uri/ =404;
+try_files $uri $uri/ =404;
 }
 }
 NGINXCONF
 
-sudo ln -sf $NGINX_CONF /etc/nginx/sites-enabled/
+#sudo ln -s /etc/nginx/sites-available/my_site /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl enable nginx
 sudo systemctl restart nginx
-
 echo "Setup complete. Visist the server IP to verify"
